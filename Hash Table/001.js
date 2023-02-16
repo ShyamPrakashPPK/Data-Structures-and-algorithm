@@ -17,7 +17,7 @@ class hashTable{
             this.data[address] = [];  
         }
         this.data[address].push([key, value])
-    }
+    } 
 
     get(key) {
         let address = this.hashFunction(key)
