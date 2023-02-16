@@ -18,7 +18,7 @@ class hashTable{
         }
         this.data[address].push([key, value])
     } 
-
+       
     get(key) {
         let address = this.hashFunction(key)
         let currentBucket = this.data[address];
