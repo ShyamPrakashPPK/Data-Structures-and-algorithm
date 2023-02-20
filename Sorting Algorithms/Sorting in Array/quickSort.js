@@ -1,4 +1,4 @@
-function quickSort(arr) {
+ function quickSort(arr) {
     if (arr.length < 2) {
         return arr;
     }
@@ -14,8 +14,6 @@ function quickSort(arr) {
     }
     return [...quickSort(left),pivot,...quickSort(right)]   
 }
-
-
 
 const array = [-1, 3, 4, 7, 2, 0, -5, 9]
 console.log(array,"<----before sorting");

@@ -20,13 +20,26 @@ class hashTable{
     } 
        
     get(key) {
-        let address = this.hashFunction(key)
+        let address = this._hash(key)
         let currentBucket = this.data[address];
         if (currentBucket.length) {
             for (let i = 0; i < currentBucket.length; i++) {
                 if (currentBucket[i][0] === key) {
                     console.log(currentBucket[i][1], "<----get");
                     return currentBucket[i][1]
+                }
+            }
+        }
+    }
+
+
+    delete(key) {
+        let address = this._hash(key)
+        let current = this.data[address]
+        if (current.length) {
+            for (let i = 0; i < current.length; i++){
+                if (current[i][0] === key) {
+                    this.data[address].pop()
                 }
             }
         }
@@ -39,6 +52,7 @@ class hashTable{
                 allArray.push(this.data[i],[0],[0])
             }
         }
+        console.log(allArray);
         return allArray;
     }
 }
@@ -48,6 +62,9 @@ myHashTable.set('grapes', 10000)
 myHashTable.set('maanga', 124122)
 
 
+myHashTable.delete("grapes")
 
-myHashTable.get('maanga') 
+
+
+myHashTable.getAll()
 

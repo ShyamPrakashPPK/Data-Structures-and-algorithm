@@ -14,7 +14,6 @@ class MyQueue {
 
     enqueue(val) {
         const newNode = new Node(val)
-
         if (!this.size) {
             this.head = newNode
             this.tail = newNode
@@ -29,7 +28,6 @@ class MyQueue {
 
         let temp = this.head
         this.head = this.head.next
-        temp.next = null
 
         this.size--
         return temp.data
@@ -45,13 +43,13 @@ class MyQueue {
 
     display() {
         if (!this.size) return null
-        let current = this.head
-        let listValues = ''
+       let current = this.head
+        let queue = []
         while (current) {
-            listValues = listValues + ` ${current.data} `
-            current = current.next
+            queue.push(current.data)
+            current= current.next
         }
-        console.log(listValues);
+        console.log(queue);
     }
 }
 

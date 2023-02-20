@@ -32,7 +32,6 @@ function merge(left, right) {
 console.log(array);
 
 
-mergeSort(array)
 
 
 console.log(mergeSort(array));
