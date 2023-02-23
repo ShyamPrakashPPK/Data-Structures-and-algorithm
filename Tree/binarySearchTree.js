@@ -56,6 +56,9 @@ class binarySearchTree {
         }
     }
 
+
+    ///////////////////bredth first search////////////////////
+
     preOrder(root){
         if(root){
             console.log(root.value);
@@ -80,6 +83,45 @@ class binarySearchTree {
         }
     }
 
+    /////////////////////depth first search/////////////////////
+
+    levelOrder(){
+        //use the optimised queue implementation
+        const queue=[]
+        queue.push(this.root)
+        while(queue.length){
+            let curr = queue.shift()
+            console.log(curr.value);
+            if(curr.left){
+                queue.push(curr.left)
+            }
+            if(curr.right){
+                queue.push(curr.right)
+            }
+        }
+    }
+
+
+
+    /////minimum and maximum///
+
+
+    min(root){
+        if(!root.left){
+            return root.value
+        } else{
+            return this.min(root.left)
+        }
+    }
+
+    max(root){
+        if(!root.right){
+            return root.value
+        }else{
+            return this.max(root.right)
+        }
+    }
+
 }
 
 
@@ -95,8 +137,6 @@ bst.insert(7)
 
 console.log(bst);
 
-console.log(bst.search(bst.root,10));
-console.log(bst.search(bst.root, 5));
-console.log(bst.search(bst.root, 15));
+console.log(bst.max(bst.root));
+console.log(bst.min(bst.root));
 
-bst.postOrder(bst.root)
