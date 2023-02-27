@@ -57,7 +57,7 @@ class binarySearchTree {
     }
 
 
-    ///////////////////bredth first search////////////////////
+    ///////////////////depth first search////////////////////
 
     preOrder(root){
         if(root){

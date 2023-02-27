@@ -1,56 +1,84 @@
 class Node{
     constructor(value){
-        this.value=value
-        this.left=null
-        this.right=null
+        this.value=value;
+        this.left=null;
+        this.right=null;
     }
 }
 
-
 class binarySearchTree{
     constructor(){
-        this.root=null
+        this.root=null;
     }
 
-
     isEmpty(){
-        return this.root === null;
+        return this.root===null;
     }
 
     insert(value){
-        let newNode=new Node(value)
+        const newNode=new Node(value)
         if(this.isEmpty()){
             this.root=newNode
         }else{
-            this.insertNode(this.root,newNode)
+            return this.insertNode(this.root, newNode)
         }
     }
 
     insertNode(root,newNode){
-
         if(newNode.value<root.value){
-            if(this.left===null){
+            if(root.left===null){
                 root.left=newNode
             }else{
                 this.insertNode(root.left,newNode)
             }
         }else{
-            if(this.right===null){
+            if(root.right===null){
                 root.right=newNode
             }else{
                 this.insertNode(root.right,newNode)
             }
         }
     }
+
+
+
+    search(root,value){
+        if(!root){
+            return false
+        }else{
+            if(root.value===value){
+                return true
+            }else if(value<root.value){
+                return this.search(root.left,value)
+            }else{
+                return this.search(root.right,value)
+            }
+        }
+    }
+
+
+    /////////////////dfs/////////////////////
+
+    preOrder(root){
+        if(root){
+            console.log(root.value);
+            this.preOrder(root.left)
+            this.preOrder(root.right)
+        }
+
+    }
+
+    inOrder(root){
+        if(root){
+            
+            console.log(root.value);
+        }
+
+    }
+
+    postOrder(){
+
+    }
+
+
 }
-
-
-
-const bst=new binarySearchTree()
-
-
-bst.insert(10)
-bst.insert(5)
-bst.insert(15)
-bst.insert(3)
-
