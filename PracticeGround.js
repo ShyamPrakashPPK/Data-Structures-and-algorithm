@@ -1,84 +1,39 @@
-class Node{
-    constructor(value){
-        this.value=value;
-        this.left=null;
-        this.right=null;
+function minHeapSort(arr) {
+    buildMinHeap(arr)
+    for (let i = arr.length - 1; i > 0; i--){
+        swap(arr, 0, i)
+        heapify(arr,0,i)
+    }
+    return arr
+}
+
+function buildMinHeap(arr) {
+    const n= arr.length
+    for (let i = Math.floor(n / 2); i > 0; i--){
+        heapify(arr,i,n)
     }
 }
 
-class binarySearchTree{
-    constructor(){
-        this.root=null;
+function heapify(arr, i, n) {
+    const left = 2 * i + 1
+    const right = 2 * i + 2
+    let smallest = i
+    
+
+    if (left < n && arr[left] < arr[smallest]) {
+        smallest=left
     }
-
-    isEmpty(){
-        return this.root===null;
+    if (right < n && arr[right] < arr[smallest]) {
+        smallest=right
     }
-
-    insert(value){
-        const newNode=new Node(value)
-        if(this.isEmpty()){
-            this.root=newNode
-        }else{
-            return this.insertNode(this.root, newNode)
-        }
+    if (smallest !== i) {
+        swap(arr, i, smallest)
+        heapify(arr,smallest,n)
     }
+}
 
-    insertNode(root,newNode){
-        if(newNode.value<root.value){
-            if(root.left===null){
-                root.left=newNode
-            }else{
-                this.insertNode(root.left,newNode)
-            }
-        }else{
-            if(root.right===null){
-                root.right=newNode
-            }else{
-                this.insertNode(root.right,newNode)
-            }
-        }
-    }
-
-
-
-    search(root,value){
-        if(!root){
-            return false
-        }else{
-            if(root.value===value){
-                return true
-            }else if(value<root.value){
-                return this.search(root.left,value)
-            }else{
-                return this.search(root.right,value)
-            }
-        }
-    }
-
-
-    /////////////////dfs/////////////////////
-
-    preOrder(root){
-        if(root){
-            console.log(root.value);
-            this.preOrder(root.left)
-            this.preOrder(root.right)
-        }
-
-    }
-
-    inOrder(root){
-        if(root){
-            
-            console.log(root.value);
-        }
-
-    }
-
-    postOrder(){
-
-    }
-
-
+function swap(arr, i, j) {
+    const temp = arr[i]
+    arr[i] = arr[j];
+    arr[j]=temp
 }
