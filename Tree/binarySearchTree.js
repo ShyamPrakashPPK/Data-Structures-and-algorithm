@@ -83,7 +83,8 @@ class binarySearchTree {
         }
     }
 
-    /////////////////////depth first search/////////////////////
+
+/////////////////////bredth first search//////////////////// 
 
     levelOrder(){
         //use the optimised queue implementation
@@ -152,9 +153,6 @@ class binarySearchTree {
         }
         return root
     }
-
-
-
 }
 
 

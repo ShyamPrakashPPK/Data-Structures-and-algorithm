@@ -8,18 +8,19 @@ function minHeapSort(arr) {
 }
 
 function buildMinHeap(arr) {
-    const n= arr.length
+    const n = arr.length
     for (let i = Math.floor(n / 2); i > 0; i--){
         heapify(arr,i,n)
     }
 }
 
+
 function heapify(arr, i, n) {
     const left = 2 * i + 1
     const right = 2 * i + 2
+    
     let smallest = i
     
-
     if (left < n && arr[left] < arr[smallest]) {
         smallest=left
     }
@@ -34,6 +35,13 @@ function heapify(arr, i, n) {
 
 function swap(arr, i, j) {
     const temp = arr[i]
-    arr[i] = arr[j];
+    arr[i] = arr[j]
     arr[j]=temp
 }
+
+
+
+
+const arr = [4, 2, 66, 7, 1]
+
+console.log(minHeapSort(arr));
