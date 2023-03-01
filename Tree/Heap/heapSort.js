@@ -32,12 +32,10 @@ function heapify(arr, i, n) {
     if (left < n && arr[left] < arr[smallest]) {
         smallest = left;
     }
-
     // compare the current node to its right child, if it exists
     if (right < n && arr[right] < arr[smallest]) {
         smallest = right;
     }
-
     // if the minimum is not the current node, swap them and
     // continue heapifying the subtree rooted at the new node
     if (smallest !== i) {
