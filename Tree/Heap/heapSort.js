@@ -27,7 +27,7 @@ function heapify(arr, i, n) {
 
     // assume the current node is the minimum
     let smallest = i;
-
+   
     // compare the current node to its left child, if it exists
     if (left < n && arr[left] < arr[smallest]) {
         smallest = left;
