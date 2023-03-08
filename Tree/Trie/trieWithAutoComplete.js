@@ -1,4 +1,4 @@
-class Node {
+ class Node {
     constructor(data) {
         this.value = data
         this.children = new Map()
