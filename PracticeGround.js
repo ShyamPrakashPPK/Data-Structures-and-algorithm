@@ -1,32 +1,52 @@
-class Node{
-    constructor(value) {
-        this.value = value;
-        this.next = null;
-    }
-}
-
-class LinkedList{
+class Graph{
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.adjacencyList={}
     }
 
-    append(value) {
-        const newNode = new Node(value);
-        if (!this.head) {
-            this.tail = newNode;
-            this.head = newNode;
-        } else {
-            this.tail.next = newNode
-            this.tail = newNode
+    addVertex(vertex) {
+        if (!this.adjacencyList.has(vertex)) {
+            this.adjacencyList.set(vertex, new Set());
         }
-        this.length += 1;
-        return this;
+    }
+
+    addEdge(vertex1,vertex2) {
+        if (!this.adjacencyList.has(vertex1)) {
+            this.addVertex(vertex1)
+        }
+        if (!this.adjacencyList.has(vertex2)) {
+            this.addVertex(vertex2)
+        }
+        this.adjacencyList.get(vertex1).add(vertex2)
+    }
+
+    insert(vertex, edge, isBidirectional) {
+        this.addEdge(vertex, edge)
+        if (isBidirectional) {
+            this.addEdge(edge,vertex)
+        }
     }
 
 
-    prepend(value) {
-        
+
+    BFS(startingVertex) {
+        const visited = new Set()
+        const queue = [startingVertex]
+        visited.add(startingVertex)
+        while (queue.length > 0) {
+            const currentVertex = queue.shift()
+            process.stdout.write(`${currentVertex}`)
+            const neighbors = this.adjacencyList.get(currentVertex);
+            for (let neighbor of neighbors) {
+                if (!visited.has(neighbor)) {
+                    visited.add(neighbor);
+                    queue.push(neighbor)
+                }
+            }
+        }
+        console.log();
     }
+    
+
+
+
 }
