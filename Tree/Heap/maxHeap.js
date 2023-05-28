@@ -26,7 +26,7 @@ class maxHeap {
         while (currentIdx > 0 && this.data[currentIdx] > this.data[parentIdx]) { //if child is > parent node, swap
             this.swap(this.data, currentIdx, parentIdx);
             currentIdx = parentIdx;
-            parentIdx = this.getParentIdx(currentIdx);
+            parentIdx = this.getParentIdx(currentIdx); 
         }
     }
     poll() {

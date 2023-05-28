@@ -1,4 +1,4 @@
-class MinHeap {
+  class MinHeap {
     constructor() {
         this.data = []
     }

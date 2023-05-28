@@ -39,7 +39,7 @@ class prefixTrie {
             if (curr.children.has(char)) {
                 curr = curr.children.get(char)
             }
-            else {
+            else { 
                 return res
             }
         }
@@ -53,7 +53,6 @@ class prefixTrie {
         }
         for (let c of curr.children.keys()) {
             this.helper(curr.children.get(c), res, prefix + curr.value)
-
         }
     }
 }

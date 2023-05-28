@@ -15,7 +15,5 @@ function insertionSort(array) {
 
 
 console.log(numbers);
-
 insertionSort(numbers);
-
 console.log(numbers);      

@@ -1,7 +1,21 @@
-//array is an simple linear data structure
+/////////////fibonacci  sequence...........
 
 
+////1
 
-const array = [1, 2, 3, 4, "a", "b", "c", true]
+function fibonacciUsingLoop(num) {
+    var fib = [0, 1 , 1]
+    for (var i = 3; i < num; i++){
+        fib[i]=fib[i-1]+fib[i-1]
+    }
+    console.log(fib);
+    return fib
+}
 
-console.log(array);
+fibonacciUsingLoop(5)
+
+
+/////2
+
+function fibonacciUsingRecurssion(num){
+}

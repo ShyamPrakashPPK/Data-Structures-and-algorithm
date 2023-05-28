@@ -152,20 +152,37 @@ class binarySearchTree {
         }
         return root
     }
+
+
+    //
+    IsBST() {
+        return this.IsBSTUtil(this.root,Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+    }
+
+    IsBSTUtil(node, min, max) {
+        if (node === null) {
+            return true;
+        }
+        if (node.value <= min || node.value >= max) {
+            return false;
+        }
+
+        return (
+            this.IsBSTUtil(node.left, min, node.value) &&
+            this.IsBSTUtil(node.right,node.value,max)
+        )
+    }
 }
 
 
 const bst = new binarySearchTree()
-console.log("is it empty....?", bst.isEmpty());
 
 bst.insert(10)
 bst.insert(5)
 bst.insert(15)
 bst.insert(3)
 
-console.log(bst.levelOrder(),"before deletion");
+console.log(bst.IsBST());
 
-bst.delete(15)
 
 bst.levelOrder()
-

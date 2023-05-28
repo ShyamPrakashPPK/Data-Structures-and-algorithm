@@ -6,7 +6,7 @@ class Node{
 }
 
 class LinkedList{
-    constructor() {
+    constructor() {  
         this.head = null;
         this.size = 0;
     }
@@ -18,7 +18,6 @@ class LinkedList{
     }
 
     //insert last node
-   
     append(value) {
         let node = new Node(value)
         if (!this.head) {
