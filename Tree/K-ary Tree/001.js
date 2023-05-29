@@ -94,7 +94,7 @@ tree.addNode("A", "C");
 tree.addNode("A", "D");
 tree.addNode("B", "E");
 tree.addNode("B", "F");
-tree.addNode("B", "G");
+tree.addNode("B", "G");  
 tree.addNode("C", "H");
 tree.addNode("C", "I");
 tree.addNode("C", "J");
