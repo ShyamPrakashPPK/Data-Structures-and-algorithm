@@ -16,4 +16,4 @@ array.shift();  /// removes an element from the beginnig of the array.... time c
 
 array.splice(5, 1); ///removes the element from  index 5.... time compelxity O(n)
 
-array.indexOf(6);  ///finds the index where 6 is present...time complexity O(n) 
+array.indexOf(6);  ///finds the index where 6 is present...time complexity O(n)      

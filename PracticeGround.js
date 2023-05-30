@@ -1,52 +1,53 @@
-class Graph{
-    constructor() {
-        this.adjacencyList={}
-    }
-
-    addVertex(vertex) {
-        if (!this.adjacencyList.has(vertex)) {
-            this.adjacencyList.set(vertex, new Set());
-        }
-    }
-
-    addEdge(vertex1,vertex2) {
-        if (!this.adjacencyList.has(vertex1)) {
-            this.addVertex(vertex1)
-        }
-        if (!this.adjacencyList.has(vertex2)) {
-            this.addVertex(vertex2)
-        }
-        this.adjacencyList.get(vertex1).add(vertex2)
-    }
-
-    insert(vertex, edge, isBidirectional) {
-        this.addEdge(vertex, edge)
-        if (isBidirectional) {
-            this.addEdge(edge,vertex)
-        }
-    }
-
-
-
-    BFS(startingVertex) {
-        const visited = new Set()
-        const queue = [startingVertex]
-        visited.add(startingVertex)
-        while (queue.length > 0) {
-            const currentVertex = queue.shift()
-            process.stdout.write(`${currentVertex}`)
-            const neighbors = this.adjacencyList.get(currentVertex);
-            for (let neighbor of neighbors) {
-                if (!visited.has(neighbor)) {
-                    visited.add(neighbor);
-                    queue.push(neighbor)
-                }
-            }
-        }
-        console.log();
-    }
+//heapsort
+function heapSort(arr) {
     
+    buildMaxHeap(arr)
+
+    for (let i = arr.length - 1; i > 0; i--){
+        
+        swap(arr, 0, i);
+
+        heapify(arr, 0, i);
+
+    }
+    return arr;
+}
 
 
+//build min heap
+function buildMaxHeap(arr) {
+    
+    const startIdx = Math.floor(arr.length / 2) - 1;
 
+    for (let i = startIdx; i >= 0; i--){
+        heapify(arr,i,arr.length)
+    }
+
+}
+
+
+//heapify
+function heapify(arr,idx,length) {
+    
+    const leftChildIdx = 2 * idx + 1;
+    const rightChildIdx = 2 * idx + 2;
+    let largestIdx = idx;
+
+    if (leftChildIdx < length && arr[leftChildIdx] > arr[largestIdx]) {
+        largestIdx =leftChildIdx
+    }
+
+    if (rightChildIdx < length && arr[rightChildIdx] > arr[largestIdx]) {
+        largestIdx=rightChildIdx
+    }
+
+    if (largestIdx!==idx) {
+        swap(arr, idx, largestIdx)
+        heapify(arr, largestIdx, length)
+    }
+}
+
+
+function swap(arr, i, j) {
+    [arr[i],arr[j]]=[arr[j],arr[i]]
 }
