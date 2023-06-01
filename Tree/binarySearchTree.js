@@ -14,7 +14,7 @@ class binarySearchTree {
 
     isEmpty() {
         return this.root === null;
-    }
+        }
 
     insert(value) {
         let newNode = new Node(value)

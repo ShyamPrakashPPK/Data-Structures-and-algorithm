@@ -16,6 +16,6 @@ function quickSort(arr) {
 }
 
 // Example usage:
-const array = [5, 8, 2, 1, 6, 3, 9, 4, 7];
+const array = [5, 8, 2, 1, 6, 3, 9, 4, 7,4556,232,6,3];
 const sortedArray = quickSort(array);
 console.log(sortedArray);
