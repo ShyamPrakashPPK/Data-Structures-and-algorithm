@@ -21,7 +21,7 @@ class prefixTrie {
         }
         curr.isEnd = true
     }
-
+z  
     contains(word) {
         let curr = this.root
         for (let char of word) {

@@ -59,10 +59,11 @@ class Graph {
                 }
             }
         };
-
         traverse(startingVertex);
         console.log();
     }
+
+    
     removeVertex(vertex) {
         if (!this.adjacencyList.has(vertex)) return;
 
@@ -74,8 +75,37 @@ class Graph {
         }
     }
 
+    hasCycle() {
+        const visited = new Set();
+        const recursionStack = new Set();
 
+        const hasCycleRecursive = (vertex) => {
+            visited.add(vertex);
+            recursionStack.add(vertex);
+            const neighbors = this.adjacencyList.get(vertex);
+            for (let neighbor of neighbors) {
+                if (!visited.has(neighbor)) {
+                    if (hasCycleRecursive(neighbor)) {
+                        return true;
+                    }
+                } else if (recursionStack.has(neighbor)) {
+                    return true;
+                }
+            }
+            recursionStack.delete(vertex);
+            return false;
+        };
 
+        for (let vertex of this.adjacencyList.keys()) {
+            if (!visited.has(vertex)) {
+                if (hasCycleRecursive(vertex)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+   
     display() {
         for (let [vertex, edges] of this.adjacencyList) {
             console.log(`${vertex}: ${[...edges].join(', ')}`);
@@ -86,14 +116,19 @@ class Graph {
 const graph = new Graph();
 
 graph.insert(1, 2, true);
-graph.insert(1, 3, true);
 graph.insert(2, 4, false);
 graph.addVertex(10)
 graph.insert(15, 10, true);
+
+
+console.log(graph);
+
+console.log(graph.hasCycle());
+
+
 // graph.display();
 
-console.log("BFS:");
-graph.BFS(3);
+
 
 // console.log("DFS:");
 // graph.DFS(1);
