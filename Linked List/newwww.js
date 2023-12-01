@@ -18,19 +18,43 @@ class LinkedList{
     }
 
     //insert last node
+    //insert last node
     append(value) {
         let node = new Node(value)
         if (!this.head) {
-            this.head=node
+            this.head = node;
         } else {
-            let current;
+            let current = this.head; // Initialize current here
             while (current.next) {
                 current = current.next;
             }
-            current.next=node
+            current.next = node;
         }
-        this.size++
+        this.size++;
     }
+
+
+    removeDuplicates() {
+        let current = this.head;
+        let uniqueValues = new Set();
+        let previous = null;
+
+        while (current !== null) {
+            if (uniqueValues.has(current.data)) {
+                // Duplicate found, remove the node
+                previous.next = current.next;
+                this.size--;
+            } else {
+                // Add the value to the set
+                uniqueValues.add(current.data);
+                previous = current;
+            }
+
+            current = current.next;
+        }
+    }
+
+
 
     //insert at index
 
@@ -65,6 +89,9 @@ class LinkedList{
 
         }
 
+      
+
+
     }
 
     //Get at index
@@ -88,10 +115,17 @@ const list = new LinkedList();
 
 
 list.append(101)
+list.append(101)
+
 list.insertfirst(100)
 list.insertfirst(300)
 
 list.insertAt(200, 2)
 
 
+
 list.printList();
+
+list.removeDuplicates()
+
+list.printList()
