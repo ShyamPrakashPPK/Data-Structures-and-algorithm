@@ -34,71 +34,139 @@ class LinkedList{
     }
 
 
-    removeDuplicates() {
+    deleteWithValue(value) {
         let current = this.head;
-        let uniqueValues = new Set();
         let previous = null;
 
         while (current !== null) {
-            if (uniqueValues.has(current.data)) {
-                // Duplicate found, remove the node
-                previous.next = current.next;
+            if (current.data === value) {
+                // Node with the specified value found, remove it
+                if (previous === null) {
+                    // If the node to be removed is the head
+                    this.head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
                 this.size--;
-            } else {
-                // Add the value to the set
-                uniqueValues.add(current.data);
-                previous = current;
+                return; // Exit the loop after deleting the node
             }
 
+            previous = current;
+            current = current.next;
+        }
+    }
+
+
+    deleteWithValue(value) {
+        let current = this.head;
+        let previous = null;
+
+        while (current !== null) {
+            if (current.data === value) {
+                // Node with the specified value found, remove it
+                if (previous === null) {
+                    // If the node to be removed is the head
+                    this.head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+                this.size--;
+                return; // Exit the loop after deleting the node
+            }
+
+            previous = current;
             current = current.next;
         }
     }
 
 
 
+
     //insert at index
 
     insertAt(data, index) {
-        //check if the index is out of bound
-        if (index > 0 && index > this.size) {
+        // check if the index is out of bounds
+        if (index < 0 || index > this.size) {
             return;
         }
 
-        //if we have to instert in first index
+        // if we have to insert at the beginning
         if (index === 0) {
             this.head = new Node(data, this.head);
+            this.size++;
             return;
         }
 
         const node = new Node(data);
-
-        let current, previous;
-        //set current to first 
-        current = this.head;
+        let current = this.head;
+        let previous = null;
         let count = 0;
 
+        // Move to the node at the specified index
         while (count < index) {
-            previous = current;//node before the node we want to insert
+            previous = current;
+            current = current.next;
             count++;
-            current = current.next;//node after the index
-
-            node.next = current;
-            previous.next = node;
-
-            this.size++;
-
         }
 
-      
+        // Insert the new node
+        node.next = current;
+        previous.next = node;
 
-
+        this.size++;
     }
 
-    //Get at index
 
-    //remove index
+    insertBefore(dataToInsert, targetData) {
+        const newNode = new Node(dataToInsert);
+        let current = this.head;
+        let previous = null;
 
-    //clear list
+        // Traverse the list to find the node with the target data
+        while (current !== null && current.data !== targetData) {
+            previous = current;
+            current = current.next;
+        }
+
+        // If the target data is found, insert the new node before it
+        if (current !== null) {
+            newNode.next = current;
+            if (previous === null) {
+                // If the target data is in the head node, update the head
+                this.head = newNode;
+            } else {
+                previous.next = newNode;
+            }
+            this.size++;
+        }
+    }
+
+
+    insertAfter(dataToInsert, targetData) {
+        const newNode = new Node(dataToInsert);
+        let current = this.head;
+
+        // Traverse the list to find the node with the target data
+        while (current !== null && current.data !== targetData) {
+            current = current.next;
+        }
+
+        // If the target data is found, insert the new node after it
+        if (current !== null) {
+            newNode.next = current.next;
+            current.next = newNode;
+            this.size++;
+        }
+    }
+   
+
+    printReverse(node = this.head) {
+        if (node === null) {
+            return;
+        }
+        this.printReverse(node.next);
+        console.log(node.data);
+    }
 
     //print list
     printList() {
@@ -113,19 +181,15 @@ class LinkedList{
 
 const list = new LinkedList();
 
+list.append(101);
+list.append(102);
+list.append(104);
 
-list.append(101)
-list.append(101)
-
-list.insertfirst(100)
-list.insertfirst(300)
-
-list.insertAt(200, 2)
-
-
-
+console.log("Original List:");
 list.printList();
 
-list.removeDuplicates()
+// Insert a node with data 201 just after the node with data 102
+list.insertAfter(103, 102);
 
-list.printList()
+console.log("\nList after inserting node with data 201 after data 102:");
+list.printList();
