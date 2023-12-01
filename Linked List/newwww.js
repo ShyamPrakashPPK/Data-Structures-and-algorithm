@@ -1,12 +1,12 @@
-class Node{
-    constructor(data,next=null) {
+class Node {
+    constructor(data, next = null) {
         this.data = data;
         this.next = next;
     }
 }
 
-class LinkedList{
-    constructor() {  
+class LinkedList {
+    constructor() {
         this.head = null;
         this.size = 0;
     }
@@ -158,7 +158,7 @@ class LinkedList{
             this.size++;
         }
     }
-   
+
 
     printReverse(node = this.head) {
         if (node === null) {
@@ -175,11 +175,42 @@ class LinkedList{
         while (current) {
             console.log(current.data);
             current = current.next;
-        } 
+        }
+    }
+
+
+    // delete middle element //----------------
+    // Delete the middle element of the linked list
+    deleteMiddle() {
+        if (this.head === null) {
+            return;
+        }
+
+        let slow = this.head;
+        let fast = this.head;
+        let previous = null;
+
+        // Move 'fast' by two steps and 'slow' by one step until 'fast' reaches the end
+        while (fast !== null && fast.next !== null) {
+            previous = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Delete the middle node (slow)
+        if (previous === null) {
+            // If the list has only one or two elements, delete the head
+            this.head = slow.next;
+        } else {
+            previous.next = slow.next;
+        }
+
+        this.size--;
     }
 
 
 
+    // bubble sort //-------------
     sort() {
         let swapped;
         let current;
@@ -280,6 +311,8 @@ class LinkedList{
 }
 
 const list = new LinkedList();
+
+
 list.append(101);
 list.append(97);
 list.append(105);
@@ -288,8 +321,23 @@ list.append(89);
 console.log("Original List:");
 list.printList();
 
-// Merge sort the linked list
-list.mergeSort();
+// Delete the middle element of the linked list
+list.deleteMiddle();
 
-console.log("\nList after merge sort:");
+console.log("\nList after deleting the middle element:");
 list.printList();
+
+
+// list.append(101);
+// list.append(97);
+// list.append(105);
+// list.append(89);
+
+// console.log("Original List:");
+// list.printList();
+
+// // Merge sort the linked list
+// list.mergeSort();
+
+// console.log("\nList after merge sort:");
+// list.printList();
