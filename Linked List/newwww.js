@@ -177,19 +177,119 @@ class LinkedList{
             current = current.next;
         } 
     }
+
+
+
+    sort() {
+        let swapped;
+        let current;
+        let next;
+
+        if (this.head === null) {
+            return;
+        }
+
+        do {
+            swapped = false;
+            current = this.head;
+
+            while (current.next !== null) {
+                next = current.next;
+
+                if (current.data > next.data) {
+                    // Swap nodes
+                    const temp = current.data;
+                    current.data = next.data;
+                    next.data = temp;
+                    swapped = true;
+                }
+
+                current = current.next;
+            }
+        } while (swapped);
+    }
+
+
+
+    // merge sort //------------------------------------
+    mergeSort() {
+        this.head = this.mergeSortRecursive(this.head);
+    }
+
+    // Recursive function to perform merge sort
+    mergeSortRecursive(node) {
+        if (node === null || node.next === null) {
+            return node;
+        }
+
+        // Find the middle of the list
+        const middle = this.getMiddle(node);
+        const nextToMiddle = middle.next;
+
+        // Split the list into two halves
+        middle.next = null;
+
+        // Recursively sort the two halves
+        const left = this.mergeSortRecursive(node);
+        const right = this.mergeSortRecursive(nextToMiddle);
+
+        // Merge the sorted halves
+        return this.merge(left, right);
+    }
+
+    // Merge two sorted linked lists
+    merge(left, right) {
+        let result = null;
+
+        if (left === null) {
+            return right;
+        }
+        if (right === null) {
+            return left;
+        }
+
+        if (left.data <= right.data) {
+            result = left;
+            result.next = this.merge(left.next, right);
+        } else {
+            result = right;
+            result.next = this.merge(left, right.next);
+        }
+
+        return result;
+    }
+
+    // Helper function to find the middle of the linked list
+    getMiddle(node) {
+        if (node === null) {
+            return node;
+        }
+
+        let slow = node;
+        let fast = node;
+
+        while (fast.next !== null && fast.next.next !== null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+
 }
 
 const list = new LinkedList();
-
 list.append(101);
-list.append(102);
-list.append(104);
+list.append(97);
+list.append(105);
+list.append(89);
 
 console.log("Original List:");
 list.printList();
 
-// Insert a node with data 201 just after the node with data 102
-list.insertAfter(103, 102);
+// Merge sort the linked list
+list.mergeSort();
 
-console.log("\nList after inserting node with data 201 after data 102:");
+console.log("\nList after merge sort:");
 list.printList();
